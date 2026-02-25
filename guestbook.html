@@ -408,7 +408,7 @@
   <script>
     // Count messages
     const msgs = JSON.parse(localStorage.getItem('si_guestbook_msgs') || '[]');
-    document.getElementById('total-msgs').textContent = msgs.length + 6;
+    document.getElementById('total-msgs').textContent = msgs.length+1;
 
     // Progress bar
     window.addEventListener('scroll', () => {
