@@ -1,0 +1,34 @@
+/* Samant & Ishika — Responsive */
+@media(min-width:769px) and (max-width:1024px){
+  .hero-grid{grid-template-columns:1fr;text-align:center;}
+  .hero-visual{display:none;}
+  .quick-links-grid{grid-template-columns:repeat(3,1fr);}
+  .footer-inner{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .nav-hamburger{display:flex;}
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-visual{display:none;}
+  .hero-actions{flex-direction:column;}
+  .hero-actions .btn{width:100%;justify-content:center;}
+  .quick-links-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .footer-inner{grid-template-columns:1fr;}
+  .section{padding:60px 0;}
+  .memory-grid{grid-template-columns:repeat(2,1fr);}
+  .timeline-item{flex-direction:column!important;padding-left:48px;}
+  .timeline-line{left:16px!important;}
+  .timeline-dot{left:16px!important;}
+  .timeline-spacer{display:none;}
+  .gallery-grid{columns:1;}
+  .fav-grid,.shared-grid,.bucket-grid,.jokes-grid,.trips-grid,.wishlist-grid,.countdown-grid,.quotes-grid,.letters-grid,.open-when-grid,.private-grid{grid-template-columns:1fr;}
+  .adventures-stats{grid-template-columns:repeat(2,1fr);}
+  .wish-wall{columns:1;}
+  .form-row{grid-template-columns:1fr;}
+  .quiz-options{grid-template-columns:1fr;}
+  .cd-digits{flex-wrap:wrap;gap:10px;}
+  .cd-number{font-size:2rem;min-width:48px;}
+}
+@media(min-width:1440px){
+  .container{max-width:1320px;}
+}

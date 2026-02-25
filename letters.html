@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Letters — Samant &amp; Ishika</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .page-hero {
+      padding: 140px 0 80px;
+      background: linear-gradient(135deg, var(--bg), var(--surface));
+      text-align: center;
+    }
+
+    .page-hero h1 {
+      font-family: 'Segoe Print', 'Comic Sans MS', sans-serif;
+      font-weight: bold;
+      font-size: clamp(3rem, 6vw, 5rem);
+      color: var(--text);
+    }
+
+    .letters-section {
+      padding: 80px 0;
+    }
+
+    .letters-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .letter-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      border-top: 2px solid var(--red);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .letter-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .letter-card::before {
+      content: '✉';
+      position: absolute;
+      top: -10px;
+      right: 16px;
+      font-size: 4rem;
+      opacity: 0.05;
+      color: var(--red);
+    }
+
+    .letter-type {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 8px;
+    }
+
+    .letter-title {
+      font-family: 'Segoe Print', 'Comic Sans MS', sans-serif;
+      font-weight: bold;
+      font-size: 1.3rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .letter-occasion {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .letter-preview {
+      font-family: 'Segoe Print', 'Comic Sans MS', sans-serif;
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.8;
+      border-left: 3px solid var(--border);
+      padding-left: 16px;
+      margin-bottom: 16px;
+    }
+
+    .letter-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .letter-locked {
+      text-align: center;
+      padding: 20px;
+      background: var(--surface);
+      border-radius: 12px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .open-when-section {
+      padding: 80px 0;
+      background: var(--surface);
+    }
+
+    .open-when-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .ow-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .ow-card:hover {
+      transform: scale(1.04);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .ow-emoji {
+      font-size: 2.5rem;
+      margin-bottom: 8px;
+    }
+
+    .ow-title {
+      font-weight: 600;
+      color: var(--text);
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+    }
+
+    .ow-lock {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .quotes-section {
+      padding: 80px 0;
+    }
+
+    .quotes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .quote-card {
+      background: var(--navy);
+      border-radius: 20px;
+      padding: 32px;
+      position: relative;
+    }
+
+    .quote-mark {
+      font-size: 4rem;
+      color: var(--red);
+      opacity: 0.3;
+      position: absolute;
+      top: 8px;
+      left: 20px;
+      line-height: 1;
+      font-family: 'Segoe Print', 'Comic Sans MS', sans-serif;
+    }
+
+    .quote-text {
+      font-family: 'Segoe Print', 'Comic Sans MS', sans-serif;
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.6;
+      margin-bottom: 12px;
+      padding-top: 20px;
+    }
+
+    .quote-attr {
+      font-size: 0.8rem;
+      color: var(--red);
+      font-weight: 600;
+    }
+
+    .write-section {
+      padding: 80px 0;
+      background: var(--surface);
+      text-align: center;
+    }
+
+    @media(max-width:768px) {
+      .letters-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .open-when-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .quotes-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="scroll-progress-bar"></div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Samant &amp; Ishika</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a><a href="story.html">Our Story</a><a href="gallery.html">Gallery</a>
+        <a href="favorites.html">Favorites</a>
+        <a href="letters.html" class="active">Letters</a><a href="countdown.html">Countdowns</a><a
+          href="guestbook.html">Guestbook</a><a href="private.html">🔒</a>
+      </div>
+      <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav-mobile"><button class="nav-mobile-close">✕</button>
+    <a href="index.html">🏠</a><a href="story.html">📖</a><a href="gallery.html">📷</a><a href="favorites.html">💝</a>
+    <a href="letters.html">💌</a><a href="countdown.html">⏰</a><a href="guestbook.html">📝</a><a
+      href="private.html">🔒</a>
+  </div>
+
+  <main>
+    <section class="page-hero">
+      <div class="container" style="position:relative;z-index:2;">
+        <div class="section-label">💌 Words From the Heart</div>
+        <h1>Love Letters</h1>
+        style="font-family:'Segoe Print', 'Comic Sans MS',
+        sans-serif;color:var(--text-muted);font-size:1.2rem;margin-top:8px;">
+        The things we'd say if words were easy</p>
+      </div>
+    </section>
+
+    <!-- Letters -->
+    <section class="letters-section">
+      <div class="container">
+        <div class="section-label">💌 Letters</div>
+        <h2 class="section-title">Written With Love</h2>
+        <div class="letters-grid">
+          <div class="letter-card reveal">
+            <div class="letter-type">💕 Anniversary Letter</div>
+            <h3 class="letter-title">Four Years of You</h3>
+            <div class="letter-occasion">📅 November 21, 2024 · By Samant</div>
+            <div class="letter-preview">"Four years ago I proposed in history class and you said yes. I still can't
+              believe how lucky I am..."</div>
+            <div class="letter-footer">
+              <span>3 min read</span>
+              <button class="btn btn-outline btn-sm">Read more 📖</button>
+            </div>
+          </div>
+          <div class="letter-card reveal">
+            <div class="letter-type">🌙 Goodnight Letter</div>
+            <h3 class="letter-title">Things I Notice About You</h3>
+            <div class="letter-occasion">📅 October 2024 · By Ishika</div>
+            <div class="letter-preview">"The way you always text me Goodnight. The way you always make sure I'm okay. I
+              notice it all..."</div>
+            <div class="letter-footer">
+              <span>2 min read</span>
+              <button class="btn btn-outline btn-sm">Read more 📖</button>
+            </div>
+          </div>
+          <div class="letter-card reveal">
+            <div class="letter-type">🎢 Fun Letter</div>
+            <h3 class="letter-title">Wonderla Memories</h3>
+            <div class="letter-occasion">📅 December 19, 2025 · By Samant</div>
+            <div class="letter-preview">"Looking back at our Wonderla trip... that photo booth picture is still my
+              favorite photo of us..."</div>
+            <div class="letter-footer">
+              <span>4 min read</span>
+              <button class="btn btn-outline btn-sm">Read more 📖</button>
+            </div>
+          </div>
+          <div class="letter-card reveal">
+            <div class="letter-type">📸 Memories</div>
+            <h3 class="letter-title">Our First Photo</h3>
+            <div class="letter-occasion">📅 November 14, 2025 · By Ishika</div>
+            <div class="letter-preview">"Ethnic day and Children's day clashed, but it gave us our first beautiful
+              picture together..."</div>
+            <div class="letter-footer">
+              <span>3 min read</span>
+              <button class="btn btn-outline btn-sm">Read more 📖</button>
+            </div>
+          </div>
+          <div class="letter-card reveal">
+            <div class="letter-type">💍 Our Start</div>
+            <h3 class="letter-title">Asha Ma'am</h3>
+            <div class="letter-occasion">📅 November 21, 2023 · By Samant</div>
+            <div class="letter-preview">"Her biggest mistake making us sit together, but the best thing that ever
+              happened to me..."</div>
+            <div class="letter-footer">
+              <span>5 min read</span>
+              <button class="btn btn-outline btn-sm">Read more 📖</button>
+            </div>
+          </div>
+          <div class="letter-card reveal" style="border-top-color:var(--gold);">
+            <div class="letter-type" style="color:var(--gold);">🔒 Private Letter</div>
+            <h3 class="letter-title">For Your Eyes Only</h3>
+            <div class="letter-occasion">📅 Locked · By Samant</div>
+            <div class="letter-locked">🔒 This letter is private — only for Ishika.<br>Password protected.</div>
+            <div class="letter-footer" style="margin-top:16px;"><span style="color:var(--gold);">🔒 Private</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Open When -->
+    <section class="open-when-section">
+      <div class="container">
+        <div class="section-label">📬 Time Capsule</div>
+        <h2 class="section-title">"Open When..." Letters</h2>
+        <p class="section-sub">Letters sealed for the perfect moment. Open them when the time is right.</p>
+        <div class="open-when-grid">
+          <div class="ow-card">
+            <div class="ow-emoji">😢</div>
+            <div class="ow-title">...you miss me</div>
+            <div class="ow-lock">📬 Sealed · Ready to open</div>
+          </div>
+          <div class="ow-card">
+            <div class="ow-emoji">🎉</div>
+            <div class="ow-title">...you need celebrating</div>
+            <div class="ow-lock">🔒 Open on good days</div>
+          </div>
+          <div class="ow-card">
+            <div class="ow-emoji">😤</div>
+            <div class="ow-title">...you're frustrated with me</div>
+            <div class="ow-lock">📬 Open freely</div>
+          </div>
+          <div class="ow-card">
+            <div class="ow-emoji">💑</div>
+            <div class="ow-title">...on our wedding day</div>
+            <div class="ow-lock">🔒 Not yet! Wait!</div>
+          </div>
+          <div class="ow-card">
+            <div class="ow-emoji">🌙</div>
+            <div class="ow-title">...you can't sleep</div>
+            <div class="ow-lock">📬 Always available</div>
+          </div>
+          <div class="ow-card">
+            <div class="ow-emoji">🏆</div>
+            <div class="ow-title">...you achieve your dream</div>
+            <div class="ow-lock">🔒 You'll know when</div>
+          </div>
+          <div class="ow-card">
+            <div class="ow-emoji">🌧️</div>
+            <div class="ow-title">...it's a bad day</div>
+            <div class="ow-lock">📬 Open anytime</div>
+          </div>
+          <div class="ow-card">
+            <div class="ow-emoji">✨</div>
+            <div class="ow-title">...our anniversary</div>
+            <div class="ow-lock">📅 February 14th only</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quotes -->
+    <section class="quotes-section">
+      <div class="container">
+        <div class="section-label">📖 Words We Love</div>
+        <h2 class="section-title">Quotes About Love</h2>
+        <div class="quotes-grid">
+          <div class="quote-card">
+            <div class="quote-mark">"</div>
+            <p class="quote-text">In all the world, there is no heart for me like yours. In all the world, there is no
+              love for you like mine.</p>
+            <div class="quote-attr">— Maya Angelou</div>
+          </div>
+          <div class="quote-card">
+            <div class="quote-mark">"</div>
+            <p class="quote-text">I love you — I am at rest with you — I have come home.</p>
+            <div class="quote-attr">— Dorothy L. Sayers</div>
+          </div>
+          <div class="quote-card">
+            <div class="quote-mark">"</div>
+            <p class="quote-text">You are my heart, my life, my one and only thought.</p>
+            <div class="quote-attr">— Arthur Conan Doyle</div>
+          </div>
+          <div class="quote-card">
+            <div class="quote-mark">"</div>
+            <p class="quote-text">Whatever our souls are made of, his and mine are the same.</p>
+            <div class="quote-attr">— Emily Brontë</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Write Section -->
+    <section class="write-section">
+      <div class="container-sm">
+        <div style="font-size:3rem;margin-bottom:16px;">✍️</div>
+        <h3 class="section-title">Leave a Note for Each Other</h3>
+        <p style="color:var(--text-muted);margin-bottom:32px;">Want to write something sweet? Leave it in the guestbook
+          for all to see, or keep it private.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+          <a href="guestbook.html" class="btn btn-primary">📝 Public Guestbook</a>
+          <a href="private.html" class="btn btn-outline">🔒 Private Message</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand">Samant &amp; Ishika</div>
+          <p class="footer-desc">Love letters, sealed and kept forever. 💌</p>
+        </div>
+        <div>
+          <h3 class="footer-title">Pages</h3>
+          <ul class="footer-links">
+            <li><a href="story.html">📖 Our Story</a></li>
+            <li><a href="gallery.html">📷 Gallery</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-title">More</h3>
+          <ul class="footer-links">
+            <li><a href="countdown.html">⏰ Countdowns</a></li>
+            <li><a href="guestbook.html">📝 Guestbook</a></li>
+            <li><a href="private.html">🔒 Private</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Made with 🔥 for Samant &amp; Ishika · 2026</p>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cursor.js"></script>
+  <script>
+  (function() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from('.page-hero h1', { duration: 1.2, y: 50, opacity: 0, ease: 'power3.out', delay: 0.2 });
+    gsap.from('.letter-card', {
+      scrollTrigger: { trigger: '.letters-grid, section', start: 'top 80%' },
+      y: 50, opacity: 0, stagger: 0.15, duration: 0.8, ease: 'power2.out'
+    });
+    document.querySelectorAll('.section-title').forEach(el => {
+      gsap.from(el, { scrollTrigger: { trigger: el, start: 'top 85%' }, y: 30, opacity: 0, duration: 0.8, ease: 'power2.out' });
+    });
+  })();
+  </script>
+</body>
+
+</html>

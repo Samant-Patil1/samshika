@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Samant &amp; Ishika — Our Story</title>
+  <meta name="description"
+    content="Samant Patil & Ishika Mukherjee — celebrating love, adventures and everything in between.">
+  <meta property="og:title" content="Samant &amp; Ishika 🔥">
+  <meta property="og:description" content="Our story, our memories, our fire.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .hero-radial {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 15% 60%, rgba(255, 105, 147, 0.18) 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 85% 30%, rgba(255, 102, 0, 0.15) 0%, transparent 55%), radial-gradient(ellipse 40% 40% at 50% 90%, rgba(255, 150, 50, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--red);
+    }
+
+    .hero-names {
+      font-family: 'Segoe Print', 'Comic Sans MS', sans-serif;
+      font-weight: bold;
+      font-size: clamp(3.5rem, 7vw, 6.5rem);
+      line-height: 0.95;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .hero-amp {
+      font-family: 'Segoe Print', 'Comic Sans MS', sans-serif;
+      font-weight: bold;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      display: block;
+      background: var(--grad-fire);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-tagline {
+      font-family: 'Segoe Print', 'Comic Sans MS', sans-serif;
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      margin: 22px 0;
+    }
+
+    .hero-counter {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin: 24px 0;
+    }
+
+    .hero-counter .big {
+      font-family: 'Segoe Print', 'Comic Sans MS', sans-serif;
+      font-weight: bold;
+      font-size: 3.2rem;
+      background: var(--grad-fire);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+
+    .hero-counter .lbl {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .hero-counter .lbl em {
+      color: var(--red);
+      font-style: normal;
+    }
+
+    .hero-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      max-width: 420px;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    /* Visual side */
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-frame {
+      position: relative;
+      width: 360px;
+      height: 440px;
+    }
+
+    .hero-photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8rem;
+      background: linear-gradient(145deg, var(--surface2) 0%, var(--surface) 100%);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-fire);
+      overflow: hidden;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: -16px;
+      right: -16px;
+      width: 96px;
+      height: 96px;
+      background: var(--grad-fire);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      box-shadow: 0 6px 30px rgba(200, 60, 30, 0.45);
+    }
+
+    .hero-badge .pulse-ring {
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 1px solid rgba(232, 98, 26, 0.4);
+      animation: pulseRing 2s ease-out infinite;
+    }
+
+    @keyframes pulseRing {
+      0% {
+        transform: scale(0.9);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .hero-since {
+      position: absolute;
+      top: -14px;
+      left: -14px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 16px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .hero-since .fire {
+      background: var(--grad-fire);
+      -webkit-background-clip: text;
+      /* -webkit-text-fill-color: transparent; */
+      background-clip: text;
+      font-family: 'Segoe Print', 'Comic Sans MS', sans-serif;
+      font-weight: bold;
+      font-size: 0.92rem;
+    }
+
+    /* Quick links */
+    .quick-links {
+      padding: 80px 0;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .quick-links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 14px;
+    }
+
+    .quick-link-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 16px;
+      text-align: center;
+      transition: all 0.3s;
+      color: var(--text-muted);
+    }
+
+    .quick-link-card:hover {
+      background: var(--surface3);
+      border-color: rgba(232, 98, 26, 0.4);
+      color: var(--text);
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-fire);
+    }
+
+    .quick-link-card:hover .ql-icon {
+      transform: scale(1.25);
+    }
+
+    .ql-icon {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      display: block;
+      transition: transform 0.3s;
+    }
+
+    .ql-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    /* Quote section */
+    .quote-section {
+      padding: 80px 0;
+      text-align: center;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 300px;
+      background: radial-gradient(ellipse, rgba(255, 105, 147, 0.12), transparent);
+      pointer-events: none;
+    }
+
+    .quote-mark {
+      font-family: Georgia, serif;
+      font-size: 5rem;
+      color: var(--red);
+      opacity: 0.3;
+      line-height: 1;
+    }
+
+    .quote-text {
+      font-family: 'Segoe Print', 'Comic Sans MS', sans-serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: var(--text);
+      max-width: 680px;
+      margin: 0 auto 18px;
+      line-height: 1.55;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quote-author {
+      font-size: 0.82rem;
+      color: var(--red);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .typewriter-text {
+      min-height: 2.2em;
+      display: block;
+    }
+
+    /* Music */
+    .music-section {
+      padding: 80px 0;
+      background: var(--bg2);
+    }
+
+    .music-player {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      max-width: 460px;
+      margin: 0 auto;
+      box-shadow: var(--shadow);
+    }
+
+    .music-vinyl {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--surface2), #FFDAE6);
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+      border: 3px solid var(--border);
+      position: relative;
+    }
+
+    .music-vinyl.playing {
+      animation: spin 3s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .music-vinyl .center {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--surface);
+    }
+
+    .music-info {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .music-song {
+      font-family: 'Segoe Print', 'Comic Sans MS', sans-serif;
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .music-artist {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .music-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .music-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: all 0.2s;
+      color: var(--text-muted);
+    }
+
+    .music-btn.play {
+      background: var(--grad-fire);
+      border: none;
+      color: white;
+      width: 56px;
+      height: 56px;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 20px rgba(200, 60, 30, 0.35);
+    }
+
+    .music-btn:hover {
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    .music-btn.play:hover {
+      transform: scale(1.06);
+    }
+
+    .music-progress {
+      margin-top: 16px;
+    }
+
+    .music-bar {
+      height: 3px;
+      background: var(--surface2);
+      border-radius: 2px;
+      cursor: pointer;
+    }
+
+    .music-bar-fill {
+      height: 100%;
+      width: 35%;
+      background: var(--grad-fire);
+      border-radius: 2px;
+    }
+
+    .music-time {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      margin-top: 6px;
+    }
+
+    /* Memory grid */
+    .memory-section {
+      padding: 80px 0;
+    }
+
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .memory-item {
+      aspect-ratio: 1;
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .memory-bg {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+      transition: transform 0.3s;
+    }
+
+    .memory-item:hover .memory-bg {
+      transform: scale(1.06);
+    }
+
+    .memory-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(13, 10, 11, 0.85), transparent);
+      display: flex;
+      align-items: flex-end;
+      padding: 12px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .memory-item:hover .memory-overlay {
+      opacity: 1;
+    }
+
+    .memory-overlay span {
+      color: var(--text);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* Embers container */
+    #embers-container {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @media(max-width:768px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        display: none;
+      }
+
+      .memory-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="scroll-progress-bar" id="progress-bar"></div>
+  <canvas id="ember-canvas"></canvas>
+
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Samant &amp; Ishika</a>
+      <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="story.html">Our Story</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="favorites.html">Favorites</a>
+        <a href="letters.html">Letters</a>
+        <a href="countdown.html">Countdowns</a>
+        <a href="guestbook.html">Guestbook</a>
+        <a href="private.html">🔒</a>
+      </div>
+      <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="nav-mobile">
+    <button class="nav-mobile-close">✕</button>
+    <a href="index.html">🏠 Home</a>
+    <a href="story.html">📖 Our Story</a>
+    <a href="gallery.html">📷 Gallery</a>
+    <a href="favorites.html">💝 Favorites</a>
+    <a href="letters.html">💌 Letters</a>
+    <a href="countdown.html">⏰ Countdowns</a>
+    <a href="guestbook.html">📝 Guestbook</a>
+    <a href="private.html">🔒 Private</a>
+  </div>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div id="embers-container" class="embers-bg"></div>
+      <div class="hero-radial"></div>
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <h1 class="hero-names" id="hero-heading">
+              Samant
+              <span class="hero-amp">&amp;</span>
+              Ishika
+            </h1>
+            <div class="hero-eyebrow">A love story worth telling</div>
+            <p class="hero-tagline">Two fires that found each other</p>
+            <div class="hero-counter" aria-label="Days together">
+              <span class="days-together" data-since="2023-11-21">1475</span>
+              <div class="lbl">days together<br><em>and counting 🔥</em></div>
+            </div>
+            <p class="hero-desc">Since we found each other, every single day has been its own kind of adventure. This is
+              our space — full of stories, memories, and the things that make us, us.</p>
+            <div class="hero-actions">
+              <a href="story.html" class="btn btn-primary">📖 Our Story</a>
+              <a href="gallery.html" class="btn btn-outline">📷 Gallery</a>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-hidden="true">
+            <div class="hero-frame">
+              <div class="hero-since">Together since<br><span class="fire">November 21, 2023 🔥</span></div>
+              <div class="hero-photo">
+                <img src="images/unnamed.jpg">
+              </div>
+              <div class="hero-badge">
+                <div class="pulse-ring"></div>
+                💍
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK LINKS -->
+    <section class="quick-links">
+      <div class="container">
+        <div style="text-align:center;margin-bottom:44px;">
+          <div class="section-label" style="justify-content:center;">Explore our world</div>
+          <h2 class="section-title">Everything <span class="text-fire">About Us</span></h2>
+        </div>
+        <div class="quick-links-grid">
+          <a href="story.html" class="quick-link-card"><span class="ql-icon">📖</span>
+            <div class="ql-name">Our Story</div>
+          </a>
+          <a href="gallery.html" class="quick-link-card"><span class="ql-icon">📷</span>
+            <div class="ql-name">Gallery</div>
+          </a>
+          <a href="favorites.html" class="quick-link-card"><span class="ql-icon">💝</span>
+            <div class="ql-name">Favorites</div>
+          </a>
+          <a href="letters.html" class="quick-link-card"><span class="ql-icon">💌</span>
+            <div class="ql-name">Letters</div>
+          </a>
+          <a href="countdown.html" class="quick-link-card"><span class="ql-icon">⏰</span>
+            <div class="ql-name">Countdowns</div>
+          </a>
+          <a href="guestbook.html" class="quick-link-card"><span class="ql-icon">📝</span>
+            <div class="ql-name">Guestbook</div>
+          </a>
+          <a href="private.html" class="quick-link-card"><span class="ql-icon">🔒</span>
+            <div class="ql-name">Private</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUOTE / TYPEWRITER -->
+    <section class="quote-section">
+      <div class="quote-glow"></div>
+      <div class="container-sm" style="position:relative;z-index:1;">
+        <div class="quote-mark">"</div>
+        <p class="quote-text">
+          <span class="typewriter-text"
+            data-texts='["You are the fire I never want to go out.", "In every universe, every lifetime — I find you.", "Two flames, one story.", "You are my favourite kind of chaos."]'>You
+            are the fire I never want to go out.</span>
+        </p>
+        <div class="quote-author">— Us, always</div>
+      </div>
+    </section>
+
+    <!-- MUSIC PLAYER -->
+    <section class="music-section">
+      <div class="container">
+        <div style="text-align:center;margin-bottom:44px;">
+          <div class="section-label" style="justify-content:center;">🎵 Soundtrack</div>
+          <h2 class="section-title">Our <span class="text-fire">Song</span></h2>
+        </div>
+        <div class="music-player">
+          <div class="music-vinyl" id="vinyl">
+            <div class="center"></div>🎵
+          </div>
+          <div class="music-info">
+            <div class="music-song">Tere Bina</div>
+            <div class="music-artist">A.R. Rahman — Our Song 🔥</div>
+          </div>
+          <div class="music-controls">
+            <button class="music-btn" aria-label="Previous">⏮</button>
+            <button class="music-btn play" id="play-btn" aria-label="Play">▶</button>
+            <button class="music-btn" aria-label="Next">⏭</button>
+          </div>
+          <div class="music-progress">
+            <div class="music-bar">
+              <div class="music-bar-fill"></div>
+            </div>
+            <div class="music-time"><span>1:12</span><span>4:08</span></div>
+          </div>
+          <div style="text-align:center;margin-top:20px;">
+            <a href="#" class="btn btn-outline btn-sm">🎧 Full Playlist on Spotify</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEMORY GRID -->
+    <section class="memory-section">
+      <div class="container">
+        <div style="text-align:center;margin-bottom:44px;">
+          <div class="section-label" style="justify-content:center;">📸 Glimpses</div>
+          <h2 class="section-title">Recent <span class="text-fire">Memories</span></h2>
+        </div>
+        <div class="memory-grid">
+          <div class="memory-item">
+            <div class="memory-bg" style="background:linear-gradient(135deg,#FF9A9E,#FECFEF);">🌅</div>
+            <div class="memory-overlay"><span>Goa Sunset 🌅</span></div>
+          </div>
+          <div class="memory-item">
+            <div class="memory-bg" style="background:linear-gradient(135deg,#FFD1FF,#FAD0C4);">☕</div>
+            <div class="memory-overlay"><span>Morning Coffee ☕</span></div>
+          </div>
+          <div class="memory-item">
+            <div class="memory-bg" style="background:linear-gradient(135deg,#FFECD2,#FCB69F);">🏔️</div>
+            <div class="memory-overlay"><span>Himalayan Trek 🏔️</span></div>
+          </div>
+          <div class="memory-item">
+            <div class="memory-bg" style="background:linear-gradient(135deg,#FBC2EB,#A6C1EE);">🎆</div>
+            <div class="memory-overlay"><span>New Year's Eve 🎆</span></div>
+          </div>
+          <div class="memory-item">
+            <div class="memory-bg" style="background:linear-gradient(135deg,#FDDB92,#D1FDFF);">🕌</div>
+            <div class="memory-overlay"><span>Jaisalmer 🕌</span></div>
+          </div>
+          <div class="memory-item">
+            <div class="memory-bg" style="background:linear-gradient(135deg,#B2FEFA,#0ED2F7);">🍽️</div>
+            <div class="memory-overlay"><span>Candlelit Dinner 🍽️</span></div>
+          </div>
+          <div class="memory-item">
+            <div class="memory-bg" style="background:linear-gradient(135deg,#84FAB0,#8FD3F4);">🎡</div>
+            <div class="memory-overlay"><span>Local Carnival 🎡</span></div>
+          </div>
+          <div class="memory-item">
+            <div class="memory-bg" style="background:linear-gradient(135deg,#FF9A9E,#FFDAE6);">💍</div>
+            <div class="memory-overlay"><span>The Proposal 💍</span></div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:36px;">
+          <a href="gallery.html" class="btn btn-primary">See Full Gallery 📷</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand">Samant &amp; Ishika</div>
+          <p class="footer-desc">Celebrating love, one ember at a time. 🔥 Together since February 14, 2020.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram">📸</a>
+            <a href="#" aria-label="TikTok">🎵</a>
+            <a href="#" aria-label="YouTube">▶</a>
+            <a href="#" aria-label="Pinterest">📌</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="footer-title">Explore</h3>
+          <ul class="footer-links">
+            <li><a href="story.html">📖 Our Story</a></li>
+            <li><a href="gallery.html">📷 Gallery</a></li>
+            <li><a href="favorites.html">💝 Favorites</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-title">More</h3>
+          <ul class="footer-links">
+            <li><a href="letters.html">💌 Love Letters</a></li>
+            <li><a href="countdown.html">⏰ Countdowns</a></li>
+            <li><a href="guestbook.html">📝 Guestbook</a></li>
+            <li><a href="private.html">🔒 Private</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Made with 🔥 for Samant &amp; Ishika · 2026</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.157.0/build/three.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Ember cursor trail
+    (function () {
+      const canvas = document.getElementById('ember-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+      window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+      const embers = [];
+      const colors = ['#FF6993', '#FF6600', '#D2001E', '#FFB347', '#FF9A9E'];
+      document.addEventListener('mousemove', e => {
+        if (Math.random() > 0.6) {
+          embers.push({
+            x: e.clientX, y: e.clientY, r: Math.random() * 5 + 3, opacity: 1,
+            dy: -(Math.random() * 3 + 1), dx: (Math.random() - 0.5) * 2,
+            color: colors[Math.floor(Math.random() * colors.length)]
+          });
+        }
+      });
+      function frame() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = embers.length - 1; i >= 0; i--) {
+          const e = embers[i];
+          e.y += e.dy; e.x += e.dx; e.opacity -= 0.025;
+          if (e.opacity <= 0) { embers.splice(i, 1); continue; }
+          ctx.save();
+          ctx.globalAlpha = e.opacity;
+          ctx.fillStyle = e.color;
+          ctx.shadowBlur = 6; ctx.shadowColor = e.color;
+          ctx.beginPath();
+          ctx.arc(e.x, e.y, e.r, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+        requestAnimationFrame(frame);
+      }
+      frame();
+    })();
+
+    // Floating embers in hero
+    (function () {
+      const container = document.getElementById('embers-container');
+      if (!container) return;
+      const colors = ['#FF6993', '#FF6600', '#D2001E', '#FF9A9E'];
+      for (let i = 0; i < 18; i++) {
+        const e = document.createElement('div');
+        e.classList.add('floating-ember');
+        const size = Math.random() * 8 + 4;
+        e.style.cssText = `
+          left:${Math.random() * 100}%;
+          width:${size}px; height:${size}px;
+          background:${colors[Math.floor(Math.random() * colors.length)]};
+          box-shadow:0 0 8px ${colors[0]};
+          animation-duration:${Math.random() * 12 + 10}s;
+          animation-delay:${Math.random() * 10}s;
+        `;
+        container.appendChild(e);
+      }
+    })();
+
+    // Music player
+    const playBtn = document.getElementById('play-btn');
+    const vinyl = document.getElementById('vinyl');
+    let playing = false;
+    playBtn?.addEventListener('click', () => {
+      playing = !playing;
+      playBtn.textContent = playing ? '⏸' : '▶';
+      vinyl?.classList.toggle('playing', playing);
+    });
+
+    // Progress bar
+    const prog = document.getElementById('progress-bar');
+    window.addEventListener('scroll', () => {
+      const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      if (prog) prog.style.width = pct + '%';
+    }, { passive: true });
+  </script>
+  <script src="js/cursor.js"></script>
+
+  <!-- Three.js 3D Floating Hearts Scene -->
+  <script>
+    (function () {
+      if (typeof THREE === 'undefined') return;
+      const canvas = document.getElementById('ember-canvas');
+      if (!canvas) return;
+
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setClearColor(0x000000, 0);
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+      camera.position.z = 20;
+
+      window.addEventListener('resize', () => {
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+      });
+
+      // Heart shape
+      const heartShape = new THREE.Shape();
+      heartShape.moveTo(0, 0.5);
+      heartShape.bezierCurveTo(0, 0.9, 0.5, 1, 0.5, 0.6);
+      heartShape.bezierCurveTo(0.5, 0.2, 0, 0, 0, -0.4);
+      heartShape.bezierCurveTo(0, 0, -0.5, 0.2, -0.5, 0.6);
+      heartShape.bezierCurveTo(-0.5, 1, 0, 0.9, 0, 0.5);
+
+      const heartGeo = new THREE.ShapeGeometry(heartShape);
+      const colors3 = [0xFF6993, 0xFF6600, 0xD2001E, 0xFFB347, 0xFF9A9E, 0xFBC2EB];
+      const hearts = [];
+
+      for (let i = 0; i < 40; i++) {
+        const mat = new THREE.MeshBasicMaterial({
+          color: colors3[Math.floor(Math.random() * colors3.length)],
+          transparent: true,
+          opacity: Math.random() * 0.55 + 0.15,
+          side: THREE.DoubleSide
+        });
+        const mesh = new THREE.Mesh(heartGeo, mat);
+        const s = Math.random() * 0.6 + 0.15;
+        mesh.scale.set(s, s, s);
+        mesh.position.set(
+          (Math.random() - 0.5) * 40,
+          (Math.random() - 0.5) * 30,
+          (Math.random() - 0.5) * 15
+        );
+        mesh.rotation.z = Math.random() * Math.PI * 2;
+        mesh.userData = {
+          vy: Math.random() * 0.02 + 0.005,
+          vrot: (Math.random() - 0.5) * 0.01,
+          startY: mesh.position.y
+        };
+        scene.add(mesh);
+        hearts.push(mesh);
+      }
+
+      // Mouse parallax
+      let mouseX = 0, mouseY = 0;
+      document.addEventListener('mousemove', e => {
+        mouseX = (e.clientX / window.innerWidth - 0.5) * 4;
+        mouseY = -(e.clientY / window.innerHeight - 0.5) * 3;
+      });
+
+      function animate() {
+        requestAnimationFrame(animate);
+        hearts.forEach(h => {
+          h.position.y += h.userData.vy;
+          h.rotation.z += h.userData.vrot;
+          if (h.position.y > 18) h.position.y = -18;
+        });
+        camera.position.x += (mouseX - camera.position.x) * 0.04;
+        camera.position.y += (mouseY - camera.position.y) * 0.04;
+        renderer.render(scene, camera);
+      }
+      animate();
+    })();
+  </script>
+
+  <!-- GSAP ScrollTrigger entrance animations -->
+  <script>
+    (function () {
+      if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Hero entrance
+      gsap.from('.hero-names', { duration: 1.2, y: 60, opacity: 0, ease: 'power3.out', delay: 0.2 });
+      gsap.from('.hero-eyebrow', { duration: 1, y: 30, opacity: 0, ease: 'power2.out', delay: 0.5 });
+      gsap.from('.hero-tagline', { duration: 1, y: 30, opacity: 0, ease: 'power2.out', delay: 0.7 });
+      gsap.from('.hero-counter', { duration: 1, y: 30, opacity: 0, ease: 'power2.out', delay: 0.9 });
+      gsap.from('.hero-actions', { duration: 1, y: 30, opacity: 0, ease: 'power2.out', delay: 1.1 });
+      gsap.from('.hero-frame', { duration: 1.4, scale: 0.85, opacity: 0, rotate: -4, ease: 'elastic.out(1,0.75)', delay: 0.6 });
+
+      // Quick link cards
+      gsap.from('.quick-link-card', {
+        scrollTrigger: { trigger: '.quick-links', start: 'top 80%' },
+        y: 50, opacity: 0, stagger: 0.1, duration: 0.7, ease: 'power2.out'
+      });
+
+      // Quote
+      gsap.from('.quote-text', {
+        scrollTrigger: { trigger: '.quote-section', start: 'top 75%' },
+        y: 40, opacity: 0, duration: 1, ease: 'power2.out'
+      });
+
+      // Music player
+      gsap.from('.music-player', {
+        scrollTrigger: { trigger: '.music-section', start: 'top 80%' },
+        scale: 0.9, opacity: 0, duration: 1, ease: 'back.out(1.4)'
+      });
+
+      // Memory grid items
+      gsap.from('.memory-item', {
+        scrollTrigger: { trigger: '.memory-section', start: 'top 80%' },
+        y: 40, opacity: 0, scale: 0.92, stagger: 0.08, duration: 0.6, ease: 'power2.out'
+      });
+
+      // Section titles throughout
+      document.querySelectorAll('.section-title').forEach(el => {
+        gsap.from(el, {
+          scrollTrigger: { trigger: el, start: 'top 85%' },
+          y: 30, opacity: 0, duration: 0.8, ease: 'power2.out'
+        });
+      });
+    })();
+  </script>
+</body>
+
+</html>

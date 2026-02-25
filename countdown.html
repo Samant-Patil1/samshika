@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdowns — Samant &amp; Ishika</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .page-hero {
+      padding: 140px 0 80px;
+      background: linear-gradient(135deg, var(--bg), var(--surface));
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 50% 80%, rgba(244, 115, 28, 0.08), transparent);
+    }
+
+    .page-hero h1 {
+      font-family: 'Segoe Print', 'Comic Sans MS', sans-serif;
+      font-weight: bold;
+      font-size: clamp(3rem, 6vw, 5rem);
+      background: var(--grad-fire);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+    }
+
+    .countdown-section {
+      padding: 80px 0;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .cd-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 36px;
+      transition: all 0.3s;
+    }
+
+    .cd-card:hover {
+      border-color: var(--red);
+      box-shadow: var(--shadow), var(--glow-orange);
+      transform: translateY(-4px);
+    }
+
+    .cd-card.featured {
+      background: linear-gradient(135deg, rgba(230, 57, 70, 0.12), rgba(244, 115, 28, 0.08));
+      border-color: rgba(230, 57, 70, 0.3);
+    }
+
+    .cd-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 8px;
+    }
+
+    .cd-card.featured .cd-label {
+      color: var(--red);
+    }
+
+    .cd-title {
+      font-family: 'Segoe Print', 'Comic Sans MS', sans-serif;
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .cd-date {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .cd-digits {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .cd-unit {
+      text-align: center;
+    }
+
+    .cd-number {
+      font-family: 'Segoe Print', 'Comic Sans MS', sans-serif;
+      font-weight: bold;
+      font-size: 3rem;
+      font-weight: 700;
+      background: var(--grad-fire);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      min-width: 70px;
+      display: block;
+    }
+
+    .cd-unit-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-soft);
+      margin-top: 4px;
+    }
+
+    .cd-sep {
+      font-size: 2rem;
+      color: var(--border);
+      align-self: flex-start;
+      padding-top: 6px;
+    }
+
+    .cd-footer {
+      margin-top: 22px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .gifts-section {
+      padding: 80px 0;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .gifts-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 40px;
+    }
+
+    .gift-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .gift-card:hover {
+      border-color: var(--red);
+      transform: scale(1.05);
+      box-shadow: var(--glow-orange);
+    }
+
+    .gift-emoji {
+      font-size: 2.5rem;
+      margin-bottom: 8px;
+    }
+
+    .gift-name {
+      font-weight: 600;
+      color: var(--text);
+      font-size: 0.88rem;
+    }
+
+    .gift-price {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .dates-section {
+      padding: 80px 0;
+    }
+
+    .date-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 24px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      margin-bottom: 12px;
+      transition: all 0.2s;
+    }
+
+    .date-item:hover {
+      border-color: var(--red);
+      transform: translateX(6px);
+    }
+
+    .date-emoji {
+      font-size: 1.8rem;
+      width: 44px;
+      text-align: center;
+    }
+
+    .date-name {
+      font-weight: 600;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .date-when {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .date-countdown {
+      font-size: 0.82rem;
+      font-weight: 600;
+      background: var(--grad-fire);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-left: auto;
+      white-space: nowrap;
+    }
+
+    @media(max-width:768px) {
+      .countdown-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gifts-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cd-number {
+        font-size: 2.2rem;
+        min-width: 52px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="scroll-progress-bar"></div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Samant &amp; Ishika</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a><a href="story.html">Story</a><a href="gallery.html">Gallery</a>
+        <a href="favorites.html">Favorites</a>
+        <a href="letters.html">Letters</a><a href="countdown.html" class="active">Countdowns</a>
+        <a href="guestbook.html">Guestbook</a><a href="private.html">🔒</a>
+      </div>
+      <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav-mobile"><button class="nav-mobile-close">✕</button>
+    <a href="index.html">🏠 Home</a><a href="story.html">📖 Story</a><a href="gallery.html">📷 Gallery</a>
+    <a href="favorites.html">💝 Favorites</a>
+    <a href="letters.html">💌 Letters</a><a href="countdown.html">⏰ Countdowns</a>
+    <a href="guestbook.html">📝 Guestbook</a><a href="private.html">🔒 Private</a>
+  </div>
+
+  <main>
+    <section class="page-hero">
+      <div class="container" style="position:relative;z-index:2;">
+        <div class="section-label">⏰ Anticipation</div>
+        <h1>Countdowns</h1>
+        <p
+          style="font-family:'Segoe Print', 'Comic Sans MS', sans-serif;color:var(--text-muted);font-size:1.2rem;margin-top:10px;">
+          Every second leading toward something beautiful</p>
+      </div>
+    </section>
+
+    <section class="countdown-section">
+      <div class="container">
+        <div class="section-label">⏰ Active Countdowns</div>
+        <h2 class="section-title">Our <span>Special Dates</span></h2>
+        <div class="countdown-grid">
+          <div class="cd-card featured live-countdown" data-date="2026-09-14">
+            <div class="cd-label">💒 The Big Day</div>
+            <h3 class="cd-title">Our Wedding Day</h3>
+            <div class="cd-date">📅 September 14, 2026</div>
+            <div class="cd-digits">
+              <div class="cd-unit"><span class="cd-number cd-days">--</span>
+                <div class="cd-unit-label">Days</div>
+              </div>
+              <span class="cd-sep">:</span>
+              <div class="cd-unit"><span class="cd-number cd-hours">--</span>
+                <div class="cd-unit-label">Hours</div>
+              </div>
+              <span class="cd-sep">:</span>
+              <div class="cd-unit"><span class="cd-number cd-mins">--</span>
+                <div class="cd-unit-label">Mins</div>
+              </div>
+              <span class="cd-sep">:</span>
+              <div class="cd-unit"><span class="cd-number cd-secs">--</span>
+                <div class="cd-unit-label">Secs</div>
+              </div>
+            </div>
+            <div class="cd-footer"><button class="btn btn-primary btn-sm" onclick="window.launchConfetti()">🎉
+                Celebrate!</button></div>
+          </div>
+
+          <div class="cd-card live-countdown" data-date="2027-02-14">
+            <div class="cd-label">🔥 Anniversary</div>
+            <h3 class="cd-title">Our Anniversary</h3>
+            <div class="cd-date">📅 February 14, 2027 · 7 Years!</div>
+            <div class="cd-digits">
+              <div class="cd-unit"><span class="cd-number cd-days">--</span>
+                <div class="cd-unit-label">Days</div>
+              </div>
+              <span class="cd-sep">:</span>
+              <div class="cd-unit"><span class="cd-number cd-hours">--</span>
+                <div class="cd-unit-label">Hours</div>
+              </div>
+              <span class="cd-sep">:</span>
+              <div class="cd-unit"><span class="cd-number cd-mins">--</span>
+                <div class="cd-unit-label">Mins</div>
+              </div>
+            </div>
+            <div class="cd-footer"><button class="btn btn-primary btn-sm">🎁 Gift Ideas</button></div>
+          </div>
+
+          <div class="cd-card live-countdown" data-date="2026-07-28">
+            <div class="cd-label">🎂 Her Birthday</div>
+            <h3 class="cd-title">Ishika's Birthday</h3>
+            <div class="cd-date">📅 July 28, 2026</div>
+            <div class="cd-digits">
+              <div class="cd-unit"><span class="cd-number cd-days">--</span>
+                <div class="cd-unit-label">Days</div>
+              </div>
+              <span class="cd-sep">:</span>
+              <div class="cd-unit"><span class="cd-number cd-hours">--</span>
+                <div class="cd-unit-label">Hours</div>
+              </div>
+              <span class="cd-sep">:</span>
+              <div class="cd-unit"><span class="cd-number cd-mins">--</span>
+                <div class="cd-unit-label">Mins</div>
+              </div>
+            </div>
+            <div class="cd-footer"><button class="btn btn-outline btn-sm">🎁 Plan surprise!</button></div>
+          </div>
+
+          <div class="cd-card live-countdown" data-date="2026-04-01">
+            <div class="cd-label">✈️ Next Trip</div>
+            <h3 class="cd-title">Japan Adventure 🏯</h3>
+            <div class="cd-date">📅 April 1, 2026 · Cherry Blossoms!</div>
+            <div class="cd-digits">
+              <div class="cd-unit"><span class="cd-number cd-days">--</span>
+                <div class="cd-unit-label">Days</div>
+              </div>
+              <span class="cd-sep">:</span>
+              <div class="cd-unit"><span class="cd-number cd-hours">--</span>
+                <div class="cd-unit-label">Hours</div>
+              </div>
+              <span class="cd-sep">:</span>
+              <div class="cd-unit"><span class="cd-number cd-mins">--</span>
+                <div class="cd-unit-label">Mins</div>
+              </div>
+            </div>
+            <div class="cd-footer"><button class="btn btn-outline btn-sm">🗺️ Plan trip</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gifts-section">
+      <div class="container">
+        <div class="section-label">🎁 Inspiration</div>
+        <h2 class="section-title">Gift <span>Ideas</span></h2>
+        <div class="gifts-grid">
+          <div class="gift-card">
+            <div class="gift-emoji">💌</div>
+            <div class="gift-name">Handwritten letter</div>
+            <div class="gift-price">Free · priceless</div>
+          </div>
+          <div class="gift-card">
+            <div class="gift-emoji">🌹</div>
+            <div class="gift-name">Wildflower bouquet</div>
+            <div class="gift-price">~$25</div>
+          </div>
+          <div class="gift-card">
+            <div class="gift-emoji">🍕</div>
+            <div class="gift-name">Pizza night in</div>
+            <div class="gift-price">~$20</div>
+          </div>
+          <div class="gift-card">
+            <div class="gift-emoji">📚</div>
+            <div class="gift-name">First edition book</div>
+            <div class="gift-price">~$50-200</div>
+          </div>
+          <div class="gift-card">
+            <div class="gift-emoji">✈️</div>
+            <div class="gift-name">Surprise getaway</div>
+            <div class="gift-price">Epic</div>
+          </div>
+          <div class="gift-card">
+            <div class="gift-emoji">🧡</div>
+            <div class="gift-name">Custom star map</div>
+            <div class="gift-price">~$40</div>
+          </div>
+          <div class="gift-card">
+            <div class="gift-emoji">🎵</div>
+            <div class="gift-name">Concert tickets</div>
+            <div class="gift-price">Depends!</div>
+          </div>
+          <div class="gift-card">
+            <div class="gift-emoji">🍽️</div>
+            <div class="gift-name">Fancy dinner out</div>
+            <div class="gift-price">~$100-200</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dates-section">
+      <div class="container">
+        <div class="section-label">📅 Timeline</div>
+        <h2 class="section-title">All Our <span>Special Dates</span></h2>
+        <div>
+          <div class="date-item">
+            <div class="date-emoji">🔥</div>
+            <div>
+              <div class="date-name">First Meet</div>
+              <div class="date-when">February 8, 2020</div>
+            </div>
+            <div class="date-countdown">5+ years ago 🥹</div>
+          </div>
+          <div class="date-item">
+            <div class="date-emoji">🍽️</div>
+            <div>
+              <div class="date-name">First Date</div>
+              <div class="date-when">Valentine's Day, February 14, 2020</div>
+            </div>
+            <div class="date-countdown">Our anniversary! 🔥</div>
+          </div>
+          <div class="date-item">
+            <div class="date-emoji">💑</div>
+            <div>
+              <div class="date-name">Made It Official</div>
+              <div class="date-when">June 20, 2020</div>
+            </div>
+            <div class="date-countdown">Empire State Building ✨</div>
+          </div>
+          <div class="date-item">
+            <div class="date-emoji">🏠</div>
+            <div>
+              <div class="date-name">Moved In Together</div>
+              <div class="date-when">March 15, 2022</div>
+            </div>
+            <div class="date-countdown">Home sweet home 🏡</div>
+          </div>
+          <div class="date-item">
+            <div class="date-emoji">💍</div>
+            <div>
+              <div class="date-name">The Proposal</div>
+              <div class="date-when">February 14, 2024</div>
+            </div>
+            <div class="date-countdown">She said YES! 🎉</div>
+          </div>
+          <div class="date-item">
+            <div class="date-emoji">💒</div>
+            <div>
+              <div class="date-name">Our Wedding Day</div>
+              <div class="date-when">September 14, 2026</div>
+            </div>
+            <div class="date-countdown" id="wedding-countdown">Counting... ⏰</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand">Samant &amp; Ishika</div>
+          <p class="footer-desc">Every moment is worth counting. ⏰🔥</p>
+        </div>
+        <div>
+          <h3 class="footer-title">Pages</h3>
+          <ul class="footer-links">
+            <li><a href="story.html">📖 Story</a></li>
+            <li><a href="letters.html">💌 Letters</a></li>
+            <li><a href="guestbook.html">📝 Guestbook</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-title">More</h3>
+          <ul class="footer-links">
+            <li><a href="gallery.html">📷 Gallery</a></li>
+            <li><a href="private.html">🔒 Private</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Made with <span style="color:var(--red)">♥</span> and <span style="color:var(--red)">🔥</span> for Samant
+          &amp; Ishika · 2026</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    const wEl = document.getElementById('wedding-countdown');
+    if (wEl) {
+      const d = Math.floor((new Date('2026-09-14') - new Date()) / (1000 * 60 * 60 * 24));
+      wEl.textContent = d > 0 ? d + ' days to go! 💒' : '🎉 Today!';
+    }
+  </script>
+  <script src="js/cursor.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+/* Samant & Ishika — Animations (Dark Campfire) */
+
+/* Ember cursor trail canvas */
+#ember-canvas{position:fixed;inset:0;pointer-events:none;z-index:9998;}
+
+/* Floating embers bg */
+.embers-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+.floating-ember{position:absolute;bottom:-40px;animation:floatEmber linear infinite;opacity:0;border-radius:50% 50% 50% 0;}
+@keyframes floatEmber{
+  0%{transform:translateY(0) rotate(-45deg);opacity:0.9;}
+  30%{opacity:0.6;}
+  70%{opacity:0.2;transform:translateX(20px) rotate(10deg) translateY(-70vh);}
+  100%{transform:translateY(-110vh) rotate(45deg);opacity:0;}
+}
+
+/* Typewriter cursor */
+.typewriter{border-right:2px solid var(--red);padding-right:4px;animation:blink 0.75s step-end infinite;}
+@keyframes blink{0%,100%{border-color:transparent;}50%{border-color:var(--red);}}
+
+/* Scroll-reveal */
+.reveal{opacity:0;transform:translateY(40px);}
+.reveal.visible{opacity:1;transform:translateY(0);transition:opacity 0.7s ease,transform 0.7s ease;}
+
+/* Timeline line draw */
+.timeline-line{position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--red),var(--red),var(--gold));transform:translateX(-50%) scaleY(0);transform-origin:top;transition:transform 1.8s cubic-bezier(0.4,0,0.2,1);}
+.timeline-line.visible{transform:translateX(-50%) scaleY(1);}
+.timeline-item{opacity:0;transform:translateY(40px);transition:all 0.65s ease;}
+.timeline-item.visible{opacity:1;transform:translateY(0);}
+
+/* 3D card flip */
+.flip-card{perspective:1200px;}
+.flip-card-inner{position:relative;width:100%;height:100%;transition:transform 0.7s ease;transform-style:preserve-3d;}
+.flip-card:hover .flip-card-inner{transform:rotateY(180deg);}
+.flip-front,.flip-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;overflow:hidden;}
+.flip-back{transform:rotateY(180deg);}
+
+/* Letter unfold */
+@keyframes unfold{0%{transform:scaleY(0);transform-origin:top;opacity:0;}100%{transform:scaleY(1);transform-origin:top;opacity:1;}}
+.letter-unfold{animation:unfold 0.5s ease forwards;}
+
+/* Map pin drop */
+@keyframes pinDrop{0%{transform:translateY(-30px) scale(0);opacity:0;}70%{transform:translateY(4px) scale(1.15);opacity:1;}100%{transform:translateY(0) scale(1);opacity:1;}}
+.map-pin{animation:pinDrop 0.5s cubic-bezier(0.23,1,0.32,1) forwards;}
+
+/* Page transition */
+.page-transition{position:fixed;inset:0;background:var(--bg2);z-index:9999;pointer-events:none;}
+
+/* Confetti — fire-colored */
+.confetti-piece{position:fixed;top:-20px;animation:confettiFall linear forwards;border-radius:2px;}
+@keyframes confettiFall{0%{transform:translateY(-20px) rotate(0deg);opacity:1;}100%{transform:translateY(100vh) rotate(720deg);opacity:0;}}
+
+/* Morphing blob */
+.blob{animation:morphBlob 10s ease-in-out infinite;}
+@keyframes morphBlob{0%,100%{border-radius:60% 40% 30% 70%/60% 30% 70% 40%;}33%{border-radius:30% 60% 70% 40%/50% 60% 30% 60%;}66%{border-radius:50% 60% 30% 60%/30% 60% 70% 40%;}}
+
+/* Glowing orb */
+.glow-orb{border-radius:50%;filter:blur(80px);pointer-events:none;position:absolute;}
+.glow-orb-red{background:rgba(192,57,43,0.25);}
+.glow-orb-orange{background:rgba(232,98,26,0.2);}
+
+/* Shimmer on buttons */
+@keyframes shimmer{0%{background-position:-200% 0;}100%{background-position:200% 0;}}
+.shimmer-btn::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.12) 50%,transparent 100%);
+  background-size:200% 100%;
+  animation:shimmer 2.5s infinite;
+  border-radius:inherit;
+}
+
+/* Days counter */
+.days-counter .number{font-family:'Playfair Display',serif;font-size:clamp(4rem,10vw,8rem);font-weight:700;background:var(--grad-fire);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+.days-counter .label{font-size:0.9rem;color:var(--text-muted);letter-spacing:0.1em;text-transform:uppercase;}
+
+/* Parallax */
+.parallax{will-change:transform;}
+
+/* Scroll progress */
+.scroll-progress-bar{position:fixed;top:0;left:0;height:2px;background:var(--grad-fire);z-index:9999;}
